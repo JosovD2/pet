@@ -1,0 +1,70 @@
+version: '3.7'
+
+services:
+  nginx:
+    image: josovd2/pet:1.1
+    restart: unless-stopped
+    ports:
+      - "80:80"
+
+  prometheus:
+    image: prom/prometheus:main
+    volumes:
+      - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+    container_name: prometheus
+    hostname: prometheus
+    command:
+      - --config.file=/etc/prometheus/prometheus.yml
+    ports:
+      - "9090:9090"
+    restart: unless-stopped
+
+  grafana:
+    image: grafana/grafana:main-ubuntu
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./grafana/provisioning/:/etc/grafana/provisioning/
+    depends_on:
+      - loki
+    hostname: grafana
+    restart: unless-stopped
+
+  loki:
+    image: grafana/loki:2.7.0
+    ports:
+      - "3100:3100"
+      - "9095:9095"
+    volumes:
+      - ./local-config.yaml:/etc/loki/local-config.yaml
+    command: -config.file=/etc/loki/local-config.yaml
+    hostname: loki
+    restart: unless-stopped
+
+  promtail:
+    image: grafana/promtail:2.7.0
+    ports:
+      - "9080:9080"
+    volumes:
+      - ./promtail.yaml:/etc/promtail/config.yaml
+      - /var/log:/var/log
+      - /tmp:/tmp
+    command: -config.file=/etc/promtail/config.yaml
+    hostname: promtail
+    restart: unless-stopped
+
+  cadvisor:
+    image: gcr.io/cadvisor/cadvisor:latest
+    container_name: cadvisor
+    restart: unless-stopped
+    ports:
+      - "8080:8080"
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
+      - /:/rootfs:ro
+      - /var/run:/var/run:rw
+      - /sys:/sys:ro
+      - /var/lib/docker:/var/lib/docker:ro
+    devices:
+      - /dev/kmsg:/dev/kmsg
