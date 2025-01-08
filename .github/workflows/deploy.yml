@@ -35,5 +35,3 @@ jobs:
           echo "$SSH_PRIVATE_KEY" > private_key
           chmod 600 private_key
           ssh -i private_key -p 2222 josov@josov.ddns.net "set -x; cd /home/josov/my_project/pet && docker-compose up -d"
-        env:
-          SSH_PRIVATE_KEY: ${{SSH_PRIVATE_KEY }}
