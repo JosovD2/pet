@@ -18,13 +18,11 @@ jobs:
 
       - name: Build and push Docker images
         run: |
-          echo "" | docker login -u "" --password-stdin
+          echo "$DOCKER_PASS" | docker login -u "JosovD2" --password-stdin
           docker-compose build
           docker-compose push
 
       - name: Deploy to server
-        env:
-          SSH_PRIVATE_KEY: 
         run: |
           echo "$SSH_PRIVATE_KEY" > private_key
           chmod 600 private_key
