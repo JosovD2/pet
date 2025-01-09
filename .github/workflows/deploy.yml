@@ -24,7 +24,7 @@ jobs:
         run: |
           echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
           docker tag myapp:latest JosovD2/myapp:latest
-          docker push JosovD2/myapp:latest
+          docker push JosovD2/pet:1.1
 
   deploy:
     runs-on: ubuntu-latest
