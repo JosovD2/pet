@@ -18,7 +18,7 @@ jobs:
 
       - name: Build Docker image
         run: |
-          docker build -t josovd2/pet:latest ./nginx
+          docker build -t josovd2/pet:1.1 ./nginx
 
       - name: Push Docker image
         run: |
