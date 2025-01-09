@@ -31,7 +31,8 @@ jobs:
     needs: build
 
     steps:
-      - name: Deploy to Server        run: |
+      - name: Deploy to Server
+        run: |
           echo "$secrets.SSH_PRIVATE_KEY" > private_key
           chmod 600 private_key
           ssh -i private_key -p 2222 josov@josov.ddns.net "set -x; cd /home/josov/my_project/pet && docker-compose up -d"
