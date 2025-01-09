@@ -18,7 +18,7 @@ jobs:
 
       - name: Build Docker image
         run: |
-          cd nginx
+          cd ./nginx
           docker build -t pet:latest .
 
       - name: Check Docker images
