@@ -18,7 +18,7 @@ jobs:
 
       - name: Build Docker image
         run: |
-          docker build -t /pet:latest ./nginx
+          docker build -t pet:latest ./nginx
 
       - name: Push Docker image
         run: |
