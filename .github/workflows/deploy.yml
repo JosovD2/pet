@@ -19,7 +19,7 @@ jobs:
       - name: Build Docker image
         run: |
           cd nginx
-          docker build -t josov/pet:latest .
+          docker build -t josovd2/pet:latest .
 
       - name: Check Docker images
         run: docker images
