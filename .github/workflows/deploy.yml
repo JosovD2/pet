@@ -44,11 +44,11 @@ jobs:
         run: |
           echo "${{ secrets.SSH_PASSWORD }}" | sshpass -p "$(cat -)" ssh -o StrictHostKeyChecking=no -p 2222 josov@josov.ddns.net "
           set -x;
-          rm -rf /home/josov/my_project/pet;
+          rm -rf /home/josov/my_project/pet || true;  # Prevent failure if the directory does not exist
           cd /home/josov/my_project;
-          git clone https://github.com/JosovD2/pet.git;
-          cd /home/josov/my_project/pet;
-          docker-compose up -d
-          pm2 restart your-app  
+          git clone https://github.com/JosovD2/pet.git || true;  # Prevent failure if the repo already exists
+          cd pet;
+          docker-compose up -d;
+          pm2 restart your-app;
           "
 
