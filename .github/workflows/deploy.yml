@@ -40,13 +40,16 @@ jobs:
       - name: Install sshpass
         run: sudo apt-get install -y sshpass
 
-      - name: Start SSH agent and deploy
+      - name: Start SSH agent 
         run: |
           echo "${{ secrets.SSH_PASSWORD }}" | sshpass -p "$(cat -)" ssh -o StrictHostKeyChecking=no -p 2222 josov@josov.ddns.net "
+     
+      - name: Remove old repository & deploy
+        run: |
           set -x;
-          rm -rf /home/josov/my_project/pet || true;  # Prevent failure if the directory does not exist
+          rm -rf /home/josov/my_project/pet || true;
           cd /home/josov/my_project;
-          git clone https://github.com/JosovD2/pet.git || true;  # Prevent failure if the repo already exists
+          git clone https://github.com/JosovD2/pet.git || true;
           cd pet;
           docker-compose up -d;
           "
