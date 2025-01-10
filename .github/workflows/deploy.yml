@@ -42,8 +42,8 @@ jobs:
 
       - name: Start SSH agent 
         run: |
-          echo "${{ secrets.SSH_PASSWORD }}" | sshpass -p "$(cat -)" ssh -o StrictHostKeyChecking=no -p 2222 josov@josov.ddns.net "
-     
+          echo "${{ secrets.SSH_PASSWORD }}" | sshpass -p "$(cat -)" "set -x ssh -o StrictHostKeyChecking=no -p 2222 josov@josov.ddns.net "
+
       - name: Remove old repository & deploy
         run: |
           set -x;
@@ -52,5 +52,4 @@ jobs:
           git clone https://github.com/JosovD2/pet.git || true;
           cd pet;
           docker-compose up -d;
-          "
 
