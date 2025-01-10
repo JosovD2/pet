@@ -47,7 +47,6 @@ jobs:
       - name: Remove old repository & deploy
         run: |
           rm -rf /home/josov/my_project/pet
-          mkdir -p /home/josov/my_project
           cd /home/josov/my_project;
           git clone https://github.com/JosovD2/pet.git
           cd pet;
