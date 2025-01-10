@@ -49,6 +49,5 @@ jobs:
           git clone https://github.com/JosovD2/pet.git || true;  # Prevent failure if the repo already exists
           cd pet;
           docker-compose up -d;
-          pm2 restart your-app;
           "
 
