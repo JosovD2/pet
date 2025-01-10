@@ -37,9 +37,13 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Deploy to Server
-        run: |
-          eval $(ssh-agent -s)
-          echo "${{ secrets.SSH_PRIVATE_KEY }}" | tr -d '\r' | ssh-add -
-          ssh -o StrictHostKeyChecking=no -p 2222 josov@josov.ddns.net "set -x; cd /home/josov/my_project/pet && docker-compose up -d"
+      - name: Install sshpass
+        run: sudo apt-get install sshpass
 
+      - name: Start SSH agent
+        run: eval $(ssh-agent -s)
+
+      - name: Add SSH key with passphrase
+        run: |
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" | tr -d '\r' | ssh-add -
+          sshpass -p "${{ secrets.SSH_PASSPHRASE }}" ssh -o StrictHostKeyChecking=no -p 2222 josov@josov.ddns.net "set -x; cd /home/josov/my_project/pet && docker-compose up -d"
