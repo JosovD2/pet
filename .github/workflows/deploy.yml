@@ -42,4 +42,4 @@ jobs:
 
       - name: Start SSH agent and deploy
         run: |
-          echo "${{ secrets.SSH_PASSWORD }}" | sshpass -p "$(cat -)" ssh -o StrictHostKeyChecking=no -p 2222 josov@josov.ddns.net "set -x; git clone git@github.com:JosovD2/pet.git && cd /home/josov/my_project/pet && docker-compose up -d"
+          echo "${{ secrets.SSH_PASSWORD }}" | sshpass -p "$(cat -)" ssh -o StrictHostKeyChecking=no -p 2222 josov@josov.ddns.net "set -x; git clone https://github.com/JosovD2/pet.git && cd /home/josov/my_project/pet && docker-compose up -d"
