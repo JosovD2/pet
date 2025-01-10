@@ -46,8 +46,10 @@ jobs:
 
       - name: Remove old repository & deploy
         run: |
+          set -e
           rm -rf /home/josov/my_project/pet
           cd /home/josov/my_project;
           git clone  git@github.com:JosovD2/pet.git
           cd pet;
           docker-compose up -d;
+          EOF
