@@ -40,14 +40,14 @@ jobs:
       - name: Install sshpass
         run: sudo apt-get install -y sshpass
 
- #     - name: Start SSH agent 
-  #      run: |
-   #       echo "${{ secrets.SSH_PASSWORD }}" | sshpass -p "$(cat -)" ssh -o StrictHostKeyChecking=no -p 2222 josov@josov.ddns.net
-
-      - name: Remove old repository & deploy
+      - name: Start SSH agent 
         run: |
-          ssh -p 2222 josov@josov.ddns.net << 'EOF'
-          set -e
+          echo "${{ secrets.SSH_PASSWORD }}" | sshpass -p "$(cat -)" ssh -o StrictHostKeyChecking=no -p 2222 josov@josov.ddns.net
+
+ #     - name: Remove old repository & deploy
+  #      run: |
+   #       ssh -p 2222 josov@josov.ddns.net << 'EOF'
+    #      set -e
           if [ ! -d "/home/josov/my_project" ]; then
             mkdir -p /home/josov/my_project
           fi
