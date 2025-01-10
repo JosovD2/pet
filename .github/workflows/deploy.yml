@@ -43,17 +43,11 @@ jobs:
       - name: Start SSH agent 
         run: |
           echo "${{ secrets.SSH_PASSWORD }}" | sshpass -p "$(cat -)" ssh -o StrictHostKeyChecking=no -p 2222 josov@josov.ddns.net
-
- #     - name: Remove old repository & deploy
-  #      run: |
-   #       ssh -p 2222 josov@josov.ddns.net << 'EOF'
-    #      set -e
-
           if [ -d "pet" ]; then
-            rm -rf pet
+          rm -rf pet
           fi
           if [ ! -d "/home/josov/my_project" ]; then
-            mkdir -p /home/josov/my_project
+          mkdir -p /home/josov/my_project
           fi
           cd /home/josov/my_project
           git clone git@github.com:JosovD2/pet.git
