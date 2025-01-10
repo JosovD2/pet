@@ -40,14 +40,9 @@ jobs:
       - name: Install sshpass
         run: sudo apt-get install -y sshpass
 
-      - name: Start SSH agent
-        run: eval "$(ssh-agent -s)"
-
-      - name: Add SSH key
+      - name: Start SSH agent and deploy
         run: |
+          eval "$(ssh-agent -s)"
           echo "${{ secrets.SSH_PRIVATE_KEY }}" | tr -d '\r' | ssh-add -
-
-      - name: SSH into server and deploy
-        run: |
+          ssh-add -l
           ssh -o StrictHostKeyChecking=no -p 2222 josov@josov.ddns.net "set -x; cd /home/josov/my_project/pet && docker-compose up -d"
-
