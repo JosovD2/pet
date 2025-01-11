@@ -42,7 +42,8 @@ jobs:
 
       - name: Start SSH agent 
         run: |
-          echo "${{ secrets.SSH_PASSWORD }}" | sshpass -p "$(cat -)" ssh -o StrictHostKeyChecking=no -p 2222 josov@josov.ddns.net
-          git clone git@github.com:JosovD2/pet.git
+          sshpass -p "${{ secrets.SSH_PASSWORD }}" ssh -o StrictHostKeyChecking=no -p 2222 josov@josov.ddns.net << 'EOF'
+          git clone https://github.com/JosovD2/pet.git
           cd pet
           docker-compose up -d
+          EOF
