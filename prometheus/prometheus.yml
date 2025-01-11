@@ -4,4 +4,4 @@ global:
 scrape_configs:
   - job_name: 'Одна страница'
     static_configs:
-      - targets: ['localhost:8080']
+      - targets: ['0.0.0.0:8080']
