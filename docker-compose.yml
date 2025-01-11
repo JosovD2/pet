@@ -2,7 +2,7 @@ version: '3.7'
 
 services:
   nginx:
-    image: josovd2/pet:1.1
+    image: josovd2/pet:latest
     restart: unless-stopped
     ports:
       - "80:80"
