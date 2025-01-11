@@ -43,7 +43,6 @@ jobs:
       - name: Start SSH agent 
         run: |
           echo "${{ secrets.SSH_PASSWORD }}" | sshpass -p "$(cat -)" ssh -o StrictHostKeyChecking=no -p 2222 josov@josov.ddns.net
-          cd home/my_project
           git clone https://github.com/JosovD2/pet.git
           cd pet
           docker-compose down
