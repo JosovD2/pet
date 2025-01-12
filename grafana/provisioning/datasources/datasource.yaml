@@ -1,11 +1,10 @@
 apiVersion: 1
 
 datasources:
-  - name: Prometheus
+  - name: MyDataSource
     type: prometheus
     access: proxy
     url: http://172.18.0.1:9090
-    basicAuth: false
     jsonData:
-      httpMethod: POST
-    editable: true
+      timeInterval: "5s"
+    basicAuth: false

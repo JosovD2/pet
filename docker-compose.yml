@@ -1,4 +1,4 @@
-version: '3.7'
+version: '3.8'
 
 services:
   nginx:
@@ -8,7 +8,7 @@ services:
       - "80:80"
 
   prometheus:
-    image: prom/prometheus:main
+    image: prom/prometheus:v2.39.0
     volumes:
       - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
     container_name: prometheus
@@ -20,16 +20,26 @@ services:
     restart: unless-stopped
 
   grafana:
-    image: grafana/grafana:main-ubuntu
+    image: grafana/grafana:9.4.0
     ports:
       - "3000:3000"
     volumes:
-      - ./grafana/provisioning/prometheus.yml:/etc/grafana/provisioning/prometheus.yml
+      - ./grafana/provisioning/datasources:/etc/grafana/provisioning/datasources
+      - ./grafana/provisioning/dashboards:/etc/grafana/provisioning/dashboards
+      - grafana_data:/var/lib/grafana
+      - ./grafana/provisioning/dashboards/kubernetes_dashboard.json:/var/lib/grafana/dashboards/kubernetes_dashboard.json
+      - ./grafana/config/grafana.ini:/etc/grafana/grafana.ini
     depends_on:
       - loki
+      - prometheus
     hostname: grafana
     environment:
+      - GF_PROVISIONING_ENABLED=true
+      - GF_PROVISIONING_DASHBOARDS_ENABLED=true
       - GF_SECURITY_ADMIN_PASSWORD=admin
+      - GF_PATHS_PROVISIONING=/etc/grafana/provisioning
+      - GF_DASHBOARDS_JSON_PATH=/etc/grafana/provisioning/dashboards
+      - GF_DASHBOARDS_JSON_ENABLED=true
     restart: unless-stopped
 
   loki:
@@ -70,3 +80,8 @@ services:
       - /var/lib/docker:/var/lib/docker:ro
     devices:
       - /dev/kmsg:/dev/kmsg
+
+volumes:
+  grafana_datasources:
+  grafana_dashboards:
+  grafana_data:
