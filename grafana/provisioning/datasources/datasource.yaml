@@ -9,7 +9,6 @@ datasources:
       timeInterval: "5s"
     basicAuth: false
 
-datasources:
   - name: Loki
     type: loki
     access: proxy
