@@ -83,7 +83,7 @@
       "bars": true,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "${DS_LOKI}",
+      "datasource": "Loki",
       "fieldConfig": {
         "defaults": {
           "custom": {},
