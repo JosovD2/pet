@@ -80,7 +80,7 @@
       },
       "targets": [
         {
-          "datasource": "Loki"
+          "datasource": "Loki",
             "type": "loki",
             "uid": "${DS_LOKI}"
           },
@@ -93,7 +93,7 @@
       "type": "logs"
     },
     {
-      "datasource": "Loki"
+      "datasource": "Loki",
         "type": "loki",
         "uid": "${DS_LOKI}"
       },
@@ -117,7 +117,7 @@
       },
       "targets": [
         {
-          "datasource": "Loki"
+          "datasource": "Loki",
             "type": "loki",
             "uid": "${DS_LOKI}"
           },
@@ -130,7 +130,7 @@
       "type": "logs"
     },
     {
-      "datasource": "Loki"
+      "datasource": "Loki",
         "type": "loki",
         "uid": "${DS_LOKI}"
       },
@@ -154,7 +154,7 @@
       },
       "targets": [
         {
-          "datasource": "Loki"
+          "datasource": "Loki",
             "type": "loki",
             "uid": "${DS_LOKI}"
           },
@@ -167,7 +167,7 @@
       "type": "logs"
     },
     {
-      "datasource": "Loki"
+      "datasource": "Loki",
         "type": "loki",
         "uid": "${DS_LOKI}"
       },
@@ -191,7 +191,7 @@
       },
       "targets": [
         {
-          "datasource": "Loki"
+          "datasource": "Loki",
             "type": "loki",
             "uid": "${DS_LOKI}"
           },
