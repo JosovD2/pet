@@ -29,7 +29,6 @@ services:
       - grafana_data:/var/lib/grafana
       - ./grafana/provisioning/dashboards/kubernetes_dashboard.json:/var/lib/grafana/dashboards/kubernetes_dashboard.json
       - ./grafana/provisioning/dashboards/loki_dash.json:/var/lib/grafana/dashboards/loki_dash.json
-      - ./grafana/config/grafana_loki.ini:/etc/grafana/grafana_loki.ini
       - ./grafana/config/grafana.ini:/etc/grafana/grafana.ini
     depends_on:
       - loki
