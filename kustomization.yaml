@@ -1,0 +1,23 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+  - nginx/nginx-deployment.yaml
+  - nginx/nginx-service.yaml
+  - prometheus/prometheus-configmap.yaml
+  - prometheus/prometheus-deployment.yaml
+  - prometheus/prometheus-service.yaml
+  - grafana/grafana-configmap.yaml
+  - grafana/grafana-dashboards-configmap.yaml
+  - grafana/grafana-datasources-configmap.yaml
+  - grafana/grafana-deployment.yaml
+  - grafana/grafana-service.yaml
+  - grafana/grafana-pvc.yaml
+  - loki/loki-configmap.yaml
+  - loki/loki-deployment.yaml
+  - loki/loki-service.yaml
+  - promtail/promtail-configmap.yaml
+  - promtail/promtail-deployment.yaml
+  - promtail/promtail-service.yaml
+  - cadvisor/cadvisor-daemonset.yaml
+  - cadvisor/cadvisor-service.yaml
