@@ -13,8 +13,7 @@ spec:
         app: nginx
     spec:
       containers:
-      - name: nginx
-        image: josovd2/pet:latest
-        ports:
-        - containerPort: 80
-        restartPolicy: Always
+        - name: nginx
+          image: josovd2/pet:latest
+          ports:
+            - containerPort: 80
