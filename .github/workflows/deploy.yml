@@ -44,8 +44,12 @@ jobs:
         run: |
           sshpass -p "${{ secrets.SSH_PASSWORD }}" ssh -o StrictHostKeyChecking=no -p 2222 josov@josov.ddns.net << 'EOF'
           cd /home/josov/pet
+      - name: Pull project
+        run: |
           git fetch --all
           git reset --hard origin/main
           git pull origin main
+      - name: Deploy
+        run: |
           docker-compose up -d
           EOF
