@@ -39,13 +39,13 @@ jobs:
 
       - name: Install sshpass
         run: sudo apt-get install -y sshpass
-
+      
       - name: Start SSH agent 
         run: |
           sshpass -p "${{ secrets.SSH_PASSWORD }}" ssh -o StrictHostKeyChecking=no -p 2222 josov@josov.ddns.net << 'EOF'
-          cd /home/josov
-          rm -rf pet
-          git clone https://github.com/JosovD2/pet.git
-          cd pet
-          docker-compose up -d
+          cd /home/josov/pet
+          git fetch --all
+          git reset --hard origin/main
+          git pull origin main
+          docker-compose up -d --build
           EOF
